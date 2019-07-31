@@ -8,6 +8,7 @@ public class Pervaya_stranica {
     public static void main(String[] args) {
         System.setProperty("webdriver.gecko.driver", "C:\\Users\\Melkish\\IdeaProjects\\Kabinet\\drivers\\geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
+        driver.manage().window().maximize();
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://lk.thisisit.ru/login");
         WebDriverWait wait = (new WebDriverWait(driver, 3));
