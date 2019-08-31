@@ -34,6 +34,26 @@ public class LoginPageTest {
         Assert.assertEquals("EIP.test@yandex.ru", mail);
     }
 
+    @Test
+    public void loginErrorTest() {
+        loginPage.signInWithEmptyLogin();
+        String error = loginPage.GetErrorLoginText();
+        Assert.assertEquals("Обязательное поле", error);
+    }
+
+    @Test
+    public void PasswordErrorTest() {
+        loginPage.signInWithEmptyPassword();
+        String error = loginPage.GetErrorPasswordText();
+        Assert.assertEquals("Обязательное поле", error);
+    }
+
+    @Test
+    public void PasswordForm() {
+        loginPage.showPasswordForm();
+        String heading = loginPage.GetHeadingFormPasswordText();
+        Assert.assertEquals("Восстановление пароля", heading);
+    }
 
     @After
     public void tearDown() {
