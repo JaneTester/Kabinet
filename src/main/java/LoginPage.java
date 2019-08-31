@@ -19,11 +19,13 @@ public class LoginPage {
     private By formForgotPassword = By.xpath("//form[@name='RestorePassForm']");
     private By headingForgotPasswordForm = By.xpath("//form[@name='RestorePassForm']//h3");
     private By BEErrorMessage = By.xpath("//div[contains(@class, 'uc-notify')]/h3[text()='Что-то пошло не так']");
+    private By mailInputFormPassword = By.xpath("//form[@name='RestorePassForm']//input[@type='email']");
+    private By formPasswordButton = By.xpath("//form[@name='RestorePassForm']//button[@type='submit']");
 
 
     public MainPage signInAccount() {
         driver.findElement(userLoginInput).sendKeys("EIP.test@yandex.ru");
-        driver.findElement(userPasswordInput).sendKeys("R_VvPZZG");
+        driver.findElement(userPasswordInput).sendKeys("IcW1jFND");
         driver.findElement(loginButton).click();
         return new MainPage(driver);
     }
@@ -61,16 +63,24 @@ public class LoginPage {
         return driver.findElement(headingForgotPasswordForm).getText();
     }
 
-    public void showBEErrormessage(String login, String password) {
+    public void showBEErrorMessage(String login, String password) {
         driver.findElement(userLoginInput).sendKeys(login);
         driver.findElement(userPasswordInput).sendKeys(password);
         driver.findElement(loginButton).click();
         WebDriverWait wait = (new WebDriverWait(driver, 5));
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(BEErrorMessage));
     }
-    public String GetBEAuthorizeErrormessageText() {
+    public String GetBEAuthorizeErrorMessageText() {
 
         return driver.findElement(BEErrorMessage).getText();
+    }
+
+    public void showBEFormErrorMessage (String mail) {
+        showPasswordForm();
+        driver.findElement(mailInputFormPassword).sendKeys(mail);
+        driver.findElement(formPasswordButton).click();
+        WebDriverWait wait = (new WebDriverWait(driver, 5));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(BEErrorMessage));
     }
 
 }

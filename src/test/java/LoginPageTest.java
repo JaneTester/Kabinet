@@ -56,10 +56,16 @@ public class LoginPageTest {
     }
 
     @Test
-    public void BEAuthorizeErrormessageText (){
-        loginPage.showBEErrormessage("dlkfhl@mal", "podrjgdbf");
-        String message = loginPage.GetBEAuthorizeErrormessageText();
+    public void BEAuthorizeErrorMessageText (){
+        loginPage.showBEErrorMessage("dlkfhl@mal", "podrjgdbf");
+        String message = loginPage.GetBEAuthorizeErrorMessageText();
         Assert.assertEquals("Что-то пошло не так", message);
+    }
+    @Test
+    public void BEFormErrorMessageText () {
+        loginPage.showBEFormErrorMessage("fgjdlg@m");
+        String error = loginPage.GetBEAuthorizeErrorMessageText();
+        Assert.assertEquals("Что-то пошло не так", error);
     }
     @After
     public void tearDown() {
