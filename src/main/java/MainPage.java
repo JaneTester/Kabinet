@@ -5,10 +5,13 @@ public class MainPage {
      WebDriver driver;
    MainPage (WebDriver driver) {this.driver = driver;}
 
-   private By mailText = By.xpath("//span[text()='EIP.test@yandex.ru']");
+   private By mainHeadingText = By.xpath("//h1[text()='Мои подписи']");
 
-    public String GetMailText() {
-        return driver.findElement(mailText).getText();
+
+
+
+    public String GetMainHeadingText() {
+        return driver.findElement(mainHeadingText).getText();
     }
 }
 

@@ -30,8 +30,8 @@ public class LoginPageTest {
     @Test
     public void mainPageUser() {
         MainPage mainPage = loginPage.signInAccount();
-        String mail = mainPage.GetMailText();
-        Assert.assertEquals("EIP.test@yandex.ru", mail);
+        String mail = mainPage.GetMainHeadingText();
+        Assert.assertEquals("Мои подписи", mail);
     }
 
     @Test
