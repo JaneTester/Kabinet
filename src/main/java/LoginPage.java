@@ -18,6 +18,7 @@ public class LoginPage {
     private By forgotPasswordButton = By.xpath("//button[@type='button']");
     private By formForgotPassword = By.xpath("//form[@name='RestorePassForm']");
     private By headingForgotPasswordForm = By.xpath("//form[@name='RestorePassForm']//h3");
+    private By BEErrorMessage = By.xpath("//div[contains(@class, 'uc-notify')]/h3[text()='Что-то пошло не так']");
 
 
     public MainPage signInAccount() {
@@ -58,6 +59,18 @@ public class LoginPage {
     public String GetHeadingFormPasswordText() {
 
         return driver.findElement(headingForgotPasswordForm).getText();
+    }
+
+    public void showBEErrormessage(String login, String password) {
+        driver.findElement(userLoginInput).sendKeys(login);
+        driver.findElement(userPasswordInput).sendKeys(password);
+        driver.findElement(loginButton).click();
+        WebDriverWait wait = (new WebDriverWait(driver, 5));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(BEErrorMessage));
+    }
+    public String GetBEAuthorizeErrormessageText() {
+
+        return driver.findElement(BEErrorMessage).getText();
     }
 
 }

@@ -55,9 +55,16 @@ public class LoginPageTest {
         Assert.assertEquals("Восстановление пароля", heading);
     }
 
+    @Test
+    public void BEAuthorizeErrormessageText (){
+        loginPage.showBEErrormessage("dlkfhl@mal", "podrjgdbf");
+        String message = loginPage.GetBEAuthorizeErrormessageText();
+        Assert.assertEquals("Что-то пошло не так", message);
+    }
     @After
     public void tearDown() {
         driver.quit();
     }
+
 }
 
