@@ -70,5 +70,12 @@ public class LegalStepOne {
         return driver.findElement(bankDetails).getText();
     }
 
+    public LegalStepTwo StepTwo() {
+        InputInformationCompany();
+        GetInformationCompany();
+        driver.findElement(furtherButton).click();
+        return new LegalStepTwo(driver);
+
+    }
 
 }

@@ -19,6 +19,7 @@ public class LegalStepOneTest {
     private LoginPage loginPage;
     private LegalStepOne legalStepOne;
     private WebDriverWait wait;
+    private LegalStepTwo legalStepTwo;
 
     @Before
     public void setUp() {
@@ -30,6 +31,7 @@ public class LegalStepOneTest {
         mainPage = new MainPage(driver);
         loginPage = new LoginPage(driver);
         legalStepOne = new LegalStepOne(driver);
+        legalStepTwo = new LegalStepTwo(driver);
         wait = (new WebDriverWait(driver, 3));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div [@class='uc-preloader__inner']")));
         loginPage.signInAccount();
@@ -178,12 +180,19 @@ public class LegalStepOneTest {
         String value = inputInformation.getAttribute("value");
         System.out.println("Поле пустое" + value);
         Assert.assertEquals("", value);
-
-
     }
 
-//    @After
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @Test
+    public void GetHeadingLegalStepTwoTest() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div [@class='uc-preloader__inner']")));
+        mainPage.GetLegalStepOne();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//h1[text()='Общая информация']")));
+        legalStepOne.StepTwo();
+        Assert.assertEquals("Выбор подписи", legalStepTwo.GetHeadingLegalStepTwoText());
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
 }
