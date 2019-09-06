@@ -23,18 +23,17 @@ public class MainPage {
         return driver.findElement(mainHeadingText).getText();
     }
 
+
     public String GetPhoneText() {
         return driver.findElement(phone).getText();
     }
-    public LegalStepOne GetLegalStepOne (){
+
+    public LegalStepOne GetLegalStepOne() {
 
         driver.findElement(signatureButton).click();
         driver.findElement(legalProfile).click();
         return new LegalStepOne(driver);
     }
-
-
-
 
 
 }
