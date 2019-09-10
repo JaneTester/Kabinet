@@ -24,6 +24,7 @@ public class MainPage {
     }
 
 
+
     public String GetPhoneText() {
         return driver.findElement(phone).getText();
     }
