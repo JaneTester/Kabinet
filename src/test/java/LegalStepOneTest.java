@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +24,9 @@ public class LegalStepOneTest {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Melkish\\IdeaProjects\\Kabinet\\drivers\\geckodriver.exe");
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Melkish\\IdeaProjects\\Kabinet\\drivers\\chromedriver.exe");
+        //driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://lk.thisisit.ru/login");
@@ -32,10 +34,10 @@ public class LegalStepOneTest {
         loginPage = new LoginPage(driver);
         legalStepOne = new LegalStepOne(driver);
         legalStepTwo = new LegalStepTwo(driver);
-        wait = (new WebDriverWait(driver, 3));
+        wait = (new WebDriverWait(driver, 5));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div [@class='uc-preloader__inner']")));
         loginPage.signInAccount();
-        wait = (new WebDriverWait(driver, 3));
+        wait = (new WebDriverWait(driver, 5));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div [@class='uc-preloader__inner']")));
 
     }
@@ -72,7 +74,7 @@ public class LegalStepOneTest {
 
     @Test
     public void GetEnterInformationManuallyTest() {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div [@class='uc-preloader__inner']")));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button[@aria-label='Получить новую подпись']")));
         mainPage.GetLegalStepOne();
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//h1[text()='Общая информация']")));
         legalStepOne.GetEnterInformationManually();

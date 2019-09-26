@@ -79,9 +79,8 @@ public class LegalStepOne {
         WebElement result = driver.findElement(element);
         Actions builder = new Actions(driver);
         Action seriesOfActions = builder
-                .moveToElement(result).sendKeys(Keys.ARROW_DOWN).build();
-        //.click().build();
-        driver.findElement(By.xpath("//div[@class='md-virtual-repeat-scroller']//li[@class='ng-scope']//span[text()='78 - Город Санкт-Петербург']")).click();
+                .moveToElement(result).sendKeys(Keys.ENTER)
+                .click().build();
         seriesOfActions.perform();
     }
 

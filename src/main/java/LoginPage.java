@@ -10,6 +10,8 @@ public class LoginPage {
         this.driver = driver;
     }
 
+    LoginData loginData = new LoginData();
+
     private By userLoginInput = By.xpath("//input[@id='input_0']");
     private By userPasswordInput = By.xpath("//input[@id='input_1']");
     private By loginButton = By.xpath("//button[@type='submit']");
@@ -24,8 +26,8 @@ public class LoginPage {
 
 
     public MainPage signInAccount() {
-        driver.findElement(userLoginInput).sendKeys("EIP.test@yandex.ru");
-        driver.findElement(userPasswordInput).sendKeys("IcW1jFND");
+        driver.findElement(userLoginInput).sendKeys(loginData.login);
+        driver.findElement(userPasswordInput).sendKeys(loginData.password);
         driver.findElement(loginButton).click();
         return new MainPage(driver);
     }
@@ -70,12 +72,13 @@ public class LoginPage {
         WebDriverWait wait = (new WebDriverWait(driver, 5));
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(BEErrorMessage));
     }
+
     public String GetBEAuthorizeErrorMessageText() {
 
         return driver.findElement(BEErrorMessage).getText();
     }
 
-    public void showBEFormErrorMessage (String mail) {
+    public void showBEFormErrorMessage(String mail) {
         showPasswordForm();
         driver.findElement(mailInputFormPassword).sendKeys(mail);
         driver.findElement(formPasswordButton).click();

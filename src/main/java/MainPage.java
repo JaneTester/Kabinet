@@ -17,7 +17,7 @@ public class MainPage {
     private By signatureButton = By.xpath("//button[@aria-label='Получить новую подпись']");
     private By legalProfile = By.xpath("//a[contains(text(),'для Юридического лица')]");
     private By individualProfile = By.xpath("//a[contains(text(),'для Индивидуального предпринимателя')]");
-    private By personProfile = By.xpath("для Физического лица");
+    private By personProfile = By.xpath("//a[contains(text(),'для Физического лица')]");
 
     public String GetMainHeadingText() {
         return driver.findElement(mainHeadingText).getText();
